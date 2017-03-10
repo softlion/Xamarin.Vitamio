@@ -50,8 +50,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate(Bundle icicle) 
 		{
 			base.OnCreate(icicle);
-			if (!LibsChecker.CheckVitamioLibs(this))
-				return;
+			//if (!LibsChecker.CheckVitamioLibs(this))
+			//	return;
 			SetContentView(Resource.Layout.mediaplayer_3);
 			mTextureView =  FindViewById<TextureView>(Resource.Id.surface);
 			mTextureView.SurfaceTextureListener = this;

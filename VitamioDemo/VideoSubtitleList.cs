@@ -33,8 +33,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			if (!global::IO.Vov.Vitamio.LibsChecker.CheckVitamioLibs (this))
-				return;
+			//if (!global::IO.Vov.Vitamio.LibsChecker.CheckVitamioLibs (this))
+			//	return;
 			this.ListAdapter = new SimpleListAdapter (this, GetData ());
 		}
 

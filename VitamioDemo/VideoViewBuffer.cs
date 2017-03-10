@@ -47,8 +47,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate (Bundle icicle)
 		{
 			//base.OnCreate(icicle);
-			if (!LibsChecker.CheckVitamioLibs (this))
-				return;
+			//if (!LibsChecker.CheckVitamioLibs (this))
+			//	return;
 			SetContentView (Resource.Layout.videobuffer);
 			mVideoView = FindViewById<VideoView> (Resource.Id.buffer);
 			pb = FindViewById<ProgressBar> (Resource.Id.probar);

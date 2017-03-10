@@ -40,8 +40,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate (Bundle icicle)
 		{
 			base.OnCreate (icicle);
-			if (!LibsChecker.CheckVitamioLibs (this))
-				return;
+			//if (!LibsChecker.CheckVitamioLibs (this))
+			//	return;
 			SetContentView (Resource.Layout.subtitle2);
 			mVideoView = FindViewById<VideoView> (Resource.Id.surface_view);
 			mSubtitleView = FindViewById<TextView> (Resource.Id.subtitle_view);

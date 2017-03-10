@@ -4,6 +4,7 @@ using Android.Content;
 using Java.Lang;
 using Android.Util;
 using Android.Content.Res;
+using Android.Net;
 using Java.IO;
 
 namespace IO.Vov.Vitamio.Demo
@@ -27,8 +28,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate(Bundle icicle)
 		{
 			base.OnCreate(icicle);
-			if (!global::IO.Vov.Vitamio.LibsChecker.CheckVitamioLibs(this))
-				return;
+			//if (!global::IO.Vov.Vitamio.LibsChecker.CheckVitamioLibs(this))
+			//	return;
 			tx = new TextView(this);
 			SetContentView(tx);
 			Bundle extras = Intent.Extras;
@@ -37,7 +38,10 @@ namespace IO.Vov.Vitamio.Demo
 
 		private void playAudio(int media)
 		{
-			try
+		    media = LOCAL_AUDIO;
+
+
+            try
 			{
 				switch (media)
 				{
@@ -45,17 +49,28 @@ namespace IO.Vov.Vitamio.Demo
 					//                *
 					//				 * TODO: Set the path variable to a local audio file path.
 					//				 
-					path = "/storage/sdcard/test_cbr.mp3";
-					if (path == "")
+					//path = "/storage/sdcard/test_cbr.mp3";
+                    path = "http://bfmbusiness.cdn.dvmr.fr/bfmbusiness";
+				    path = "http://cdn.nrjaudio.fm/adwz1/fr/30405/aac_64.mp3";
+
+                    if (path == "")
 					{
 						// Tell the user to provide an audio file URL.
 						Toast.MakeText(this, "Please edit MediaPlayer_Audio Activity, " + "and set the path variable to your audio file path." + " Your audio file must be stored on sdcard.", ToastLength.Long).Show();
 						return;
 					}
 					mMediaPlayer = new MediaPlayer(this);
-					mMediaPlayer.SetDataSource(path);
-					mMediaPlayer.Prepare();
-					mMediaPlayer.Start();
+				        mMediaPlayer.Error += (sender, args) =>
+				        {
+				            Log.Error("vitamio", $"MediaPlayer error {args.P1} {args.P2}");
+				        };
+				        mMediaPlayer.HWRenderFailed += (sender, args) =>
+				        {
+				            Log.Error("vitamio", "HWRenderFailed");
+				        };
+                        mMediaPlayer.SetDataSource(path);
+                        mMediaPlayer.Prepare();
+					    mMediaPlayer.Start();
 					break;
 				case RESOURCES_AUDIO:
 					//                *
@@ -68,7 +83,7 @@ namespace IO.Vov.Vitamio.Demo
 
 					break;
 				}
-				tx.Text = "Playing audio...";
+				tx.Text = $"Playing audio... {path}";
 
 			}
 			catch (Exception e)

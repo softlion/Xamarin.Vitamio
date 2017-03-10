@@ -41,8 +41,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate(Bundle icicle)
 		{
 			base.OnCreate(icicle);
-			if (!LibsChecker.CheckVitamioLibs(this))
-				return;
+			//if (!LibsChecker.CheckVitamioLibs(this))
+			//	return;
 			SetContentView(Resource.Layout.videoview);
 			mEditText = FindViewById<EditText>(Resource.Id.url);
 			mVideoView = (VideoView) FindViewById<VideoView>(Resource.Id.surface_view);

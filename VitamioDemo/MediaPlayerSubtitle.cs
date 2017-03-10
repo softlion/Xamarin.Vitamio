@@ -24,9 +24,6 @@ using Java.IO;
 
 namespace IO.Vov.Vitamio.Demo
 {
-
-
-	using LibsChecker = IO.Vov.Vitamio.LibsChecker;
 	using MediaPlayer = IO.Vov.Vitamio.MediaPlayer;
 	using OnPreparedListener = IO.Vov.Vitamio.MediaPlayer.IOnPreparedListener;
 	using OnTimedTextListener = IO.Vov.Vitamio.MediaPlayer.IOnTimedTextListener;
@@ -44,8 +41,8 @@ namespace IO.Vov.Vitamio.Demo
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			if (!LibsChecker.CheckVitamioLibs (this))
-				return;
+			//if (!LibsChecker.CheckVitamioLibs (this))
+			//	return;
 			SetContentView (Resource.Layout.subtitle1);
 			tv = (TextView)FindViewById (Resource.Id.sub1);
 			splayer = (SurfaceView)FindViewById (Resource.Id.surface);
